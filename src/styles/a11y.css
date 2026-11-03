@@ -1,0 +1,75 @@
+/* ==========================================================================
+   无障碍补丁层
+   --------------------------------------------------------------------------
+   这一层在 globals.css 里最后加载，用来覆盖前面几层里「为了紧凑而牺牲可用性」
+   的规则：被显式抹掉的焦点环、小于 44×44 的命中区、只靠颜色表达的状态。
+   只做覆盖，不重新定义组件外观；能不动字号就不动字号。
+   ========================================================================== */
+
+/* 图库缩略图：真正的控件是包住图片的按钮，按钮本身不能改变卡片外观 */
+.gallery-thumb-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  line-height: 0;
+}
+
+.gallery-thumb-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* 图谱节点：焦点光晕由 GraphView 的行内属性直接画（SVG 没有可靠的默认焦点环），
+   这里只是把浏览器可能画出来的默认 outline 让位给那圈光晕 */
+.graph-node:focus {
+  outline: none;
+}
+
+/* ---------- 命中区：交互目标至少 44×44 ---------- */
+.path-step,
+.graph-legend-item,
+.notice-list a,
+.doc-nav-card {
+  min-height: 44px;
+}
+
+/* 图例项原本没有任何 padding，撑高的同时补一点横向留白 */
+.graph-legend-item {
+  padding-inline: 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+}
+
+/* ---------- 状态不能只靠颜色 ---------- */
+/* 图谱分组筛选：选中项同时有边框、勾号和字重差异，读屏另有 aria-pressed */
+.graph-legend-item[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+.graph-legend-item[aria-pressed='true']::before {
+  content: '✓';
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* 目录当前小节：加宽左侧标记线并加粗，颜色之外还有形状与字重差异 */
+.toc-item a[data-active='true'] {
+  border-left-width: 3px;
+  font-weight: 600;
+}
+
+/* ---------- 触摸滚动 ---------- */
+/* .graph-canvas 原本是 touch-action: none，整块 66vh 都滑不动页面，
+   手机上会被「卡」在图谱里；改为允许纵向滚动，只在节点上禁用（拖拽仍生效） */
+.graph-canvas {
+  touch-action: pan-y;
+}
+
+.graph-node {
+  touch-action: none;
+}

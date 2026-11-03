@@ -1,0 +1,9 @@
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+.env*
+*.pem
+*.key
+*.log
+.DS_Store

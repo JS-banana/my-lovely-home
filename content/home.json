@@ -1,0 +1,1806 @@
+{
+  "version": 1,
+  "unit": "m",
+  "extent": [
+    9.19,
+    10.58
+  ],
+  "referenceHeight": 2.83,
+  "rooms": [
+    {
+      "id": "study",
+      "name": "书房",
+      "polygon": [
+        [
+          1.3,
+          1.14
+        ],
+        [
+          3.77,
+          1.14
+        ],
+        [
+          3.77,
+          4.22
+        ],
+        [
+          1.3,
+          4.22
+        ]
+      ],
+      "label": [
+        2.45,
+        2.78
+      ],
+      "surface": "wood",
+      "finish": "herringbone"
+    },
+    {
+      "id": "master",
+      "name": "主卧",
+      "polygon": [
+        [
+          0,
+          4.42
+        ],
+        [
+          2.87,
+          4.42
+        ],
+        [
+          2.87,
+          9.97
+        ],
+        [
+          0,
+          9.97
+        ]
+      ],
+      "label": [
+        1.43,
+        7.55
+      ],
+      "surface": "wood",
+      "finish": "herringbone"
+    },
+    {
+      "id": "baby",
+      "name": "次卧（宝宝房）",
+      "polygon": [
+        [
+          3.15,
+          5.56
+        ],
+        [
+          5.91,
+          5.56
+        ],
+        [
+          5.91,
+          8.63
+        ],
+        [
+          3.15,
+          8.63
+        ]
+      ],
+      "label": [
+        4.52,
+        7.47
+      ],
+      "surface": "wood",
+      "finish": "herringbone"
+    },
+    {
+      "id": "bath",
+      "name": "卫生间",
+      "polygon": [
+        [
+          3.97,
+          1.14
+        ],
+        [
+          4.92,
+          1.14
+        ],
+        [
+          4.92,
+          2.14
+        ],
+        [
+          5.77,
+          2.14
+        ],
+        [
+          5.77,
+          3.2
+        ],
+        [
+          3.97,
+          3.2
+        ]
+      ],
+      "label": [
+        4.65,
+        2.52
+      ],
+      "surface": "tile",
+      "wallFinish": {
+        "material": "tile"
+      }
+    },
+    {
+      "id": "dry",
+      "name": "干区",
+      "polygon": [
+        [
+          3.97,
+          3.32
+        ],
+        [
+          5.77,
+          3.32
+        ],
+        [
+          5.77,
+          4.35
+        ],
+        [
+          3.97,
+          4.35
+        ]
+      ],
+      "label": [
+        4.87,
+        3.87
+      ],
+      "surface": "wood",
+      "finish": "herringbone"
+    },
+    {
+      "id": "kitchen",
+      "name": "厨房",
+      "polygon": [
+        [
+          5.18,
+          0
+        ],
+        [
+          7.77,
+          0
+        ],
+        [
+          7.77,
+          2.02
+        ],
+        [
+          5.18,
+          2.02
+        ]
+      ],
+      "label": [
+        6.5,
+        1.1
+      ],
+      "surface": "wood",
+      "finish": "herringbone",
+      "wallFinish": {
+        "material": "tile"
+      }
+    },
+    {
+      "id": "entry",
+      "name": "玄关",
+      "polygon": [
+        [
+          7.91,
+          0.9
+        ],
+        [
+          9.19,
+          0.9
+        ],
+        [
+          9.19,
+          2.6
+        ],
+        [
+          7.91,
+          2.6
+        ]
+      ],
+      "label": [
+        8.54,
+        1.45
+      ],
+      "surface": "wood",
+      "finish": "herringbone"
+    },
+    {
+      "id": "dining",
+      "name": "餐厅",
+      "polygon": [
+        [
+          5.91,
+          2.18
+        ],
+        [
+          7.91,
+          2.18
+        ],
+        [
+          7.91,
+          2.6
+        ],
+        [
+          9.19,
+          2.6
+        ],
+        [
+          9.19,
+          4.5
+        ],
+        [
+          5.91,
+          4.5
+        ]
+      ],
+      "label": [
+        7.28,
+        3.5
+      ],
+      "surface": "wood",
+      "finish": "herringbone"
+    },
+    {
+      "id": "living",
+      "name": "客厅",
+      "polygon": [
+        [
+          6.08,
+          4.5
+        ],
+        [
+          9.19,
+          4.5
+        ],
+        [
+          9.19,
+          8.63
+        ],
+        [
+          6.08,
+          8.63
+        ]
+      ],
+      "label": [
+        7.63,
+        6.44
+      ],
+      "surface": "wood",
+      "finish": "herringbone"
+    },
+    {
+      "id": "corridor",
+      "name": "走廊",
+      "polygon": [
+        [
+          2.99,
+          4.38
+        ],
+        [
+          3.97,
+          4.38
+        ],
+        [
+          3.97,
+          4.47
+        ],
+        [
+          6.08,
+          4.47
+        ],
+        [
+          6.08,
+          5.43
+        ],
+        [
+          2.99,
+          5.43
+        ]
+      ],
+      "label": [
+        4.55,
+        4.93
+      ],
+      "surface": "wood",
+      "finish": "herringbone"
+    },
+    {
+      "id": "balcony",
+      "name": "阳台",
+      "polygon": [
+        [
+          3.15,
+          8.83
+        ],
+        [
+          9.19,
+          8.83
+        ],
+        [
+          9.19,
+          9.93
+        ],
+        [
+          8.55,
+          9.93
+        ],
+        [
+          8.55,
+          10.58
+        ],
+        [
+          3.53,
+          10.58
+        ],
+        [
+          3.53,
+          9.93
+        ],
+        [
+          3.15,
+          9.93
+        ]
+      ],
+      "label": [
+        6.45,
+        9.58
+      ],
+      "surface": "wood",
+      "finish": "herringbone"
+    }
+  ],
+  "walls": [
+    {
+      "from": [
+        1.18,
+        1.02
+      ],
+      "to": [
+        3.88,
+        1.02
+      ],
+      "thickness": 0.2,
+      "openings": [
+        {
+          "offset": 0.15,
+          "width": 2.34,
+          "sill": 1,
+          "height": 1.35,
+          "kind": "window",
+          "treatment": "slatted"
+        }
+      ]
+    },
+    {
+      "from": [
+        1.18,
+        1.02
+      ],
+      "to": [
+        1.18,
+        4.29
+      ],
+      "thickness": 0.2,
+      "openings": [
+        {
+          "offset": 0.12,
+          "width": 1.08,
+          "sill": 1,
+          "height": 1.35,
+          "kind": "window",
+          "treatment": "slatted"
+        }
+      ]
+    },
+    {
+      "from": [
+        3.88,
+        1.02
+      ],
+      "to": [
+        3.88,
+        4.29
+      ],
+      "thickness": 0.14,
+      "openings": []
+    },
+    {
+      "from": [
+        1.18,
+        4.29
+      ],
+      "to": [
+        3.88,
+        4.29
+      ],
+      "thickness": 0.14,
+      "openings": [
+        {
+          "offset": 1.73,
+          "width": 0.85,
+          "sill": 0,
+          "height": 2.1,
+          "kind": "door"
+        }
+      ]
+    },
+    {
+      "from": [
+        3.88,
+        1.02
+      ],
+      "to": [
+        5.04,
+        1.02
+      ],
+      "thickness": 0.14,
+      "openings": [
+        {
+          "offset": 0.18,
+          "width": 0.68,
+          "sill": 0.85,
+          "height": 1.5,
+          "kind": "window"
+        }
+      ]
+    },
+    {
+      "from": [
+        5.04,
+        1.02
+      ],
+      "to": [
+        5.04,
+        2.07
+      ],
+      "thickness": 0.14,
+      "openings": []
+    },
+    {
+      "from": [
+        5.04,
+        2.07
+      ],
+      "to": [
+        5.85,
+        2.07
+      ],
+      "thickness": 0.14,
+      "openings": []
+    },
+    {
+      "from": [
+        5.85,
+        2.07
+      ],
+      "to": [
+        5.85,
+        4.42
+      ],
+      "thickness": 0.18,
+      "openings": []
+    },
+    {
+      "from": [
+        3.88,
+        3.26
+      ],
+      "to": [
+        5.85,
+        3.26
+      ],
+      "thickness": 0.12,
+      "openings": [
+        {
+          "offset": 0.1,
+          "width": 0.83,
+          "sill": 0,
+          "height": 2.1,
+          "kind": "door"
+        }
+      ]
+    },
+    {
+      "from": [
+        5.05,
+        -0.12
+      ],
+      "to": [
+        7.86,
+        -0.12
+      ],
+      "thickness": 0.24,
+      "openings": []
+    },
+    {
+      "from": [
+        5.05,
+        0
+      ],
+      "to": [
+        5.05,
+        1.02
+      ],
+      "thickness": 0.24,
+      "openings": [
+        {
+          "offset": 0.1,
+          "width": 0.78,
+          "sill": 0.9,
+          "height": 1.55,
+          "kind": "window"
+        }
+      ]
+    },
+    {
+      "from": [
+        7.86,
+        0
+      ],
+      "to": [
+        7.86,
+        2.1
+      ],
+      "thickness": 0.18,
+      "openings": []
+    },
+    {
+      "from": [
+        5.05,
+        2.1
+      ],
+      "to": [
+        7.86,
+        2.1
+      ],
+      "thickness": 0.14,
+      "openings": [
+        {
+          "offset": 0.95,
+          "width": 1.67,
+          "sill": 0,
+          "height": 2.1,
+          "kind": "door"
+        }
+      ]
+    },
+    {
+      "from": [
+        7.86,
+        0.81
+      ],
+      "to": [
+        9.19,
+        0.81
+      ],
+      "thickness": 0.15,
+      "openings": [
+        {
+          "offset": 0.12,
+          "width": 1.08,
+          "sill": 0,
+          "height": 2.1,
+          "kind": "door"
+        }
+      ]
+    },
+    {
+      "from": [
+        9.29,
+        0.81
+      ],
+      "to": [
+        9.29,
+        8.73
+      ],
+      "thickness": 0.2,
+      "openings": []
+    },
+    {
+      "from": [
+        0,
+        4.29
+      ],
+      "to": [
+        1.18,
+        4.29
+      ],
+      "thickness": 0.24,
+      "openings": []
+    },
+    {
+      "from": [
+        -0.12,
+        4.29
+      ],
+      "to": [
+        -0.12,
+        10.07
+      ],
+      "thickness": 0.24,
+      "openings": [
+        {
+          "offset": 0.18,
+          "width": 1.12,
+          "sill": 1,
+          "height": 1.35,
+          "kind": "window"
+        }
+      ]
+    },
+    {
+      "from": [
+        0,
+        10.07
+      ],
+      "to": [
+        2.99,
+        10.07
+      ],
+      "thickness": 0.2,
+      "openings": [
+        {
+          "offset": 0.38,
+          "width": 1.76,
+          "sill": 0.7,
+          "height": 1.7,
+          "kind": "window"
+        }
+      ]
+    },
+    {
+      "from": [
+        2.99,
+        4.29
+      ],
+      "to": [
+        2.99,
+        10.07
+      ],
+      "thickness": 0.18,
+      "openings": [
+        {
+          "offset": 0.12,
+          "width": 1,
+          "sill": 0,
+          "height": 2.1,
+          "kind": "door"
+        }
+      ]
+    },
+    {
+      "from": [
+        1.18,
+        4.29
+      ],
+      "to": [
+        2.99,
+        4.29
+      ],
+      "thickness": 0.14,
+      "openings": []
+    },
+    {
+      "from": [
+        3.06,
+        5.49
+      ],
+      "to": [
+        6.01,
+        5.49
+      ],
+      "thickness": 0.14,
+      "openings": [
+        {
+          "offset": 1.93,
+          "width": 0.86,
+          "sill": 0,
+          "height": 2.1,
+          "kind": "door"
+        }
+      ]
+    },
+    {
+      "from": [
+        3.06,
+        5.49
+      ],
+      "to": [
+        3.06,
+        8.73
+      ],
+      "thickness": 0.15,
+      "openings": []
+    },
+    {
+      "from": [
+        6.01,
+        5.49
+      ],
+      "to": [
+        6.01,
+        8.73
+      ],
+      "thickness": 0.15,
+      "openings": []
+    },
+    {
+      "from": [
+        3.06,
+        8.73
+      ],
+      "to": [
+        6.01,
+        8.73
+      ],
+      "thickness": 0.14,
+      "openings": [
+        {
+          "offset": 0.47,
+          "width": 2.04,
+          "sill": 0.65,
+          "height": 1.7,
+          "kind": "window"
+        }
+      ]
+    },
+    {
+      "from": [
+        6.01,
+        8.73
+      ],
+      "to": [
+        9.19,
+        8.73
+      ],
+      "thickness": 0.15,
+      "openings": [
+        {
+          "offset": 0.12,
+          "width": 2.93,
+          "sill": 0,
+          "height": 2.45,
+          "kind": "door"
+        }
+      ]
+    },
+    {
+      "from": [
+        3.06,
+        8.73
+      ],
+      "to": [
+        3.06,
+        9.99
+      ],
+      "thickness": 0.16,
+      "openings": []
+    },
+    {
+      "from": [
+        3.06,
+        9.99
+      ],
+      "to": [
+        3.44,
+        9.99
+      ],
+      "thickness": 0.16,
+      "openings": []
+    },
+    {
+      "from": [
+        3.44,
+        9.99
+      ],
+      "to": [
+        3.44,
+        10.58
+      ],
+      "thickness": 0.16,
+      "openings": []
+    },
+    {
+      "from": [
+        3.44,
+        10.65
+      ],
+      "to": [
+        8.64,
+        10.65
+      ],
+      "thickness": 0.14,
+      "openings": [
+        {
+          "offset": 0.41,
+          "width": 4.08,
+          "sill": 0.55,
+          "height": 1.85,
+          "kind": "window"
+        }
+      ]
+    },
+    {
+      "from": [
+        8.64,
+        10.58
+      ],
+      "to": [
+        8.64,
+        9.99
+      ],
+      "thickness": 0.16,
+      "openings": []
+    },
+    {
+      "from": [
+        8.64,
+        9.99
+      ],
+      "to": [
+        9.19,
+        9.99
+      ],
+      "thickness": 0.16,
+      "openings": []
+    },
+    {
+      "from": [
+        9.27,
+        9.99
+      ],
+      "to": [
+        9.27,
+        8.73
+      ],
+      "thickness": 0.16,
+      "openings": []
+    }
+  ],
+  "furniture": [
+    {
+      "kind": "liftingDesk",
+      "room": "study",
+      "position": [
+        2.3,
+        1.54
+      ],
+      "size": [
+        2,
+        0.8,
+        0.75
+      ],
+      "legSpacing": 1.55
+    },
+    {
+      "kind": "sofa",
+      "room": "study",
+      "position": [
+        2.08,
+        3.79
+      ],
+      "size": [
+        1.5,
+        0.8,
+        0.84
+      ],
+      "seatHeight": 0.43,
+      "clearance": 0.17
+    },
+    {
+      "kind": "shelf",
+      "room": "study",
+      "position": [
+        1.455,
+        3
+      ],
+      "size": [
+        0.64,
+        0.27,
+        0.93
+      ],
+      "rotation": 1.570796,
+      "compartments": [
+        2,
+        3
+      ]
+    },
+    {
+      "kind": "drawer",
+      "room": "study",
+      "position": [
+        3.31,
+        1.73
+      ],
+      "size": [
+        0.28,
+        0.44,
+        0.69
+      ]
+    },
+    {
+      "kind": "computer",
+      "room": "study",
+      "position": [
+        3.64,
+        1.63
+      ],
+      "size": [
+        0.2,
+        0.4,
+        0.45
+      ]
+    },
+    {
+      "kind": "chair",
+      "room": "study",
+      "position": [
+        2.77,
+        2.42
+      ],
+      "size": [
+        0.62,
+        0.65,
+        1.14
+      ]
+    },
+    {
+      "kind": "bed",
+      "room": "master",
+      "position": [
+        1.15,
+        8.04
+      ],
+      "size": [
+        1.8,
+        2.1,
+        0.5
+      ],
+      "rotation": 1.570796,
+      "finish": "pink",
+      "variant": "carved"
+    },
+    {
+      "kind": "cabinet",
+      "room": "master",
+      "position": [
+        1.1,
+        4.73
+      ],
+      "size": [
+        1.9,
+        0.55,
+        2.3
+      ],
+      "finish": "white",
+      "variant": "wardrobe"
+    },
+    {
+      "kind": "cabinet",
+      "room": "master",
+      "position": [
+        0.35,
+        5.67
+      ],
+      "size": [
+        1.27,
+        0.55,
+        2.3
+      ],
+      "rotation": 1.570796,
+      "finish": "white",
+      "variant": "wardrobe"
+    },
+    {
+      "kind": "bed",
+      "room": "baby",
+      "position": [
+        4.53,
+        7.24
+      ],
+      "size": [
+        1.5,
+        2,
+        0.34
+      ],
+      "rotation": 1.570796,
+      "finish": "pink",
+      "variant": "low"
+    },
+    {
+      "kind": "cabinet",
+      "room": "baby",
+      "position": [
+        4.17,
+        5.9
+      ],
+      "size": [
+        1.5,
+        0.55,
+        2.3
+      ],
+      "finish": "white",
+      "variant": "wardrobe"
+    },
+    {
+      "kind": "rug",
+      "room": "living",
+      "position": [
+        7.55,
+        7
+      ],
+      "size": [
+        1.8,
+        2.45,
+        0.008
+      ]
+    },
+    {
+      "kind": "sofa",
+      "room": "living",
+      "position": [
+        6.64,
+        6.98
+      ],
+      "size": [
+        2.7,
+        0.92,
+        0.9
+      ],
+      "rotation": -1.570796,
+      "finish": "olive"
+    },
+    {
+      "kind": "coffee",
+      "room": "living",
+      "position": [
+        7.7,
+        7.05
+      ],
+      "size": [
+        0.66,
+        1.08,
+        0.43
+      ]
+    },
+    {
+      "kind": "cabinet",
+      "room": "living",
+      "position": [
+        8.91,
+        6.88
+      ],
+      "size": [
+        2.6,
+        0.4,
+        0.4
+      ],
+      "rotation": -1.570796
+    },
+    {
+      "kind": "screen",
+      "room": "living",
+      "position": [
+        9.03,
+        6.88
+      ],
+      "size": [
+        1.66,
+        0.045,
+        0.94
+      ],
+      "rotation": -1.570796,
+      "elevation": 0.9
+    },
+    {
+      "kind": "dining",
+      "room": "dining",
+      "position": [
+        7.61,
+        3.35
+      ],
+      "size": [
+        0.8,
+        1.4,
+        0.76
+      ]
+    },
+    {
+      "kind": "sideboard",
+      "room": "dining",
+      "position": [
+        6.22,
+        3.74
+      ],
+      "size": [
+        1.35,
+        0.55,
+        2.35
+      ],
+      "rotation": 1.570796,
+      "finish": "white"
+    },
+    {
+      "kind": "airFryer",
+      "room": "dining",
+      "position": [
+        6.3,
+        3.67
+      ],
+      "size": [
+        0.25,
+        0.29,
+        0.31
+      ],
+      "rotation": 1.570796,
+      "elevation": 0.684
+    },
+    {
+      "kind": "soyMilkMaker",
+      "room": "dining",
+      "position": [
+        6.3,
+        3.28
+      ],
+      "size": [
+        0.23,
+        0.26,
+        0.43
+      ],
+      "rotation": 1.570796,
+      "elevation": 0.684
+    },
+    {
+      "kind": "refrigerator",
+      "room": "dining",
+      "position": [
+        6.27,
+        2.65
+      ],
+      "size": [
+        0.8,
+        0.65,
+        1.83
+      ],
+      "rotation": 1.570796
+    },
+    {
+      "kind": "counter",
+      "room": "kitchen",
+      "position": [
+        6.39,
+        0.32
+      ],
+      "size": [
+        2.22,
+        0.6,
+        0.88
+      ],
+      "finish": "white",
+      "fixture": "cooktop"
+    },
+    {
+      "kind": "counter",
+      "room": "kitchen",
+      "position": [
+        5.5,
+        1.3
+      ],
+      "size": [
+        1.37,
+        0.6,
+        0.88
+      ],
+      "rotation": 1.570796,
+      "finish": "white",
+      "fixture": "sink"
+    },
+    {
+      "kind": "waterHeater",
+      "room": "kitchen",
+      "position": [
+        5.55,
+        1.89
+      ],
+      "size": [
+        0.48,
+        0.24,
+        1.4
+      ],
+      "rotation": 3.141593,
+      "elevation": 1.2
+    },
+    {
+      "kind": "dishRack",
+      "room": "kitchen",
+      "position": [
+        5.48,
+        1.76
+      ],
+      "size": [
+        0.34,
+        0.28,
+        0.29
+      ],
+      "rotation": 1.570796,
+      "elevation": 0.88
+    },
+    {
+      "kind": "hangingBin",
+      "room": "kitchen",
+      "position": [
+        5.89,
+        1.75
+      ],
+      "size": [
+        0.24,
+        0.18,
+        0.34
+      ],
+      "rotation": 1.570796,
+      "elevation": 0.42
+    },
+    {
+      "kind": "basin",
+      "room": "dry",
+      "position": [
+        5.46,
+        3.84
+      ],
+      "size": [
+        0.9,
+        0.45,
+        0.8
+      ],
+      "rotation": -1.570796
+    },
+    {
+      "kind": "toilet",
+      "room": "bath",
+      "position": [
+        5.3,
+        2.74
+      ],
+      "size": [
+        0.4,
+        0.66,
+        0.42
+      ],
+      "rotation": -1.570796
+    },
+    {
+      "kind": "curtain",
+      "room": "living",
+      "position": [
+        6.3,
+        8.53
+      ],
+      "size": [
+        0.5,
+        0.16,
+        2.45
+      ],
+      "finish": "olive"
+    },
+    {
+      "kind": "ceiling",
+      "room": "living",
+      "position": [
+        7.63,
+        5.4
+      ],
+      "size": [
+        3.1,
+        6.25,
+        0.3
+      ],
+      "elevation": 2.43
+    },
+    {
+      "kind": "chandelier",
+      "room": "living",
+      "position": [
+        7.63,
+        6.35
+      ],
+      "size": [
+        0.84,
+        0.84,
+        0.7
+      ],
+      "elevation": 2.03
+    },
+    {
+      "kind": "fanLight",
+      "room": "dining",
+      "position": [
+        7.25,
+        3.4
+      ],
+      "size": [
+        1.05,
+        1.05,
+        0.6
+      ],
+      "elevation": 2.13
+    },
+    {
+      "kind": "chair",
+      "room": "study",
+      "position": [
+        1.83,
+        2.32
+      ],
+      "size": [
+        0.44,
+        0.48,
+        0.8
+      ],
+      "finish": "linen"
+    },
+    {
+      "kind": "airConditioner",
+      "room": "study",
+      "position": [
+        3.61,
+        1.62
+      ],
+      "size": [
+        0.85,
+        0.24,
+        0.3
+      ],
+      "rotation": -1.570796,
+      "finish": "white",
+      "elevation": 2.12
+    },
+    {
+      "kind": "pendant",
+      "room": "study",
+      "position": [
+        2.49,
+        2.66
+      ],
+      "size": [
+        0.56,
+        0.56,
+        0.44
+      ],
+      "variant": "petal",
+      "elevation": 2.35
+    },
+    {
+      "kind": "table",
+      "room": "master",
+      "position": [
+        0.4,
+        6.6
+      ],
+      "size": [
+        1.1,
+        0.45,
+        0.76
+      ],
+      "rotation": 1.570796
+    },
+    {
+      "kind": "chair",
+      "room": "master",
+      "position": [
+        0.87,
+        6.6
+      ],
+      "size": [
+        0.43,
+        0.45,
+        0.83
+      ],
+      "rotation": 1.570796,
+      "finish": "linen"
+    },
+    {
+      "kind": "table",
+      "room": "master",
+      "position": [
+        0.4,
+        9.35
+      ],
+      "size": [
+        0.45,
+        0.42,
+        0.52
+      ]
+    },
+    {
+      "kind": "curtain",
+      "room": "master",
+      "position": [
+        0.4,
+        9.9
+      ],
+      "size": [
+        0.42,
+        0.11,
+        2.37
+      ],
+      "finish": "olive"
+    },
+    {
+      "kind": "curtain",
+      "room": "master",
+      "position": [
+        2.49,
+        9.9
+      ],
+      "size": [
+        0.42,
+        0.11,
+        2.37
+      ],
+      "finish": "olive"
+    },
+    {
+      "kind": "curtain",
+      "room": "master",
+      "position": [
+        0.64,
+        9.9
+      ],
+      "size": [
+        0.42,
+        0.11,
+        2.37
+      ],
+      "finish": "linen"
+    },
+    {
+      "kind": "curtain",
+      "room": "master",
+      "position": [
+        2.26,
+        9.9
+      ],
+      "size": [
+        0.42,
+        0.11,
+        2.37
+      ],
+      "finish": "linen"
+    },
+    {
+      "kind": "counter",
+      "room": "master",
+      "position": [
+        1.45,
+        9.82
+      ],
+      "size": [
+        1.77,
+        0.3,
+        0.72
+      ],
+      "finish": "white"
+    },
+    {
+      "kind": "airConditioner",
+      "room": "master",
+      "position": [
+        2.72,
+        9.06
+      ],
+      "size": [
+        0.88,
+        0.24,
+        0.3
+      ],
+      "rotation": -1.570796,
+      "finish": "white",
+      "elevation": 2.1
+    },
+    {
+      "kind": "pendant",
+      "room": "master",
+      "position": [
+        1.43,
+        7.2
+      ],
+      "size": [
+        0.62,
+        0.62,
+        0.69
+      ],
+      "variant": "petal",
+      "elevation": 2.1
+    },
+    {
+      "kind": "curtain",
+      "room": "baby",
+      "position": [
+        4.52,
+        8.61
+      ],
+      "size": [
+        2.05,
+        0.09,
+        0.48
+      ],
+      "finish": "linen",
+      "variant": "roman",
+      "elevation": 1.9
+    },
+    {
+      "kind": "airConditioner",
+      "room": "baby",
+      "position": [
+        3.31,
+        8.06
+      ],
+      "size": [
+        0.85,
+        0.24,
+        0.3
+      ],
+      "rotation": 1.570796,
+      "finish": "white",
+      "elevation": 2.11
+    },
+    {
+      "kind": "flushLight",
+      "room": "baby",
+      "position": [
+        4.53,
+        7.08
+      ],
+      "size": [
+        0.48,
+        0.48,
+        0.11
+      ],
+      "elevation": 2.68
+    },
+    {
+      "kind": "laundry",
+      "room": "balcony",
+      "position": [
+        8.86,
+        9.39
+      ],
+      "size": [
+        1.08,
+        0.56,
+        2.4
+      ],
+      "rotation": -1.570796,
+      "finish": "white"
+    },
+    {
+      "kind": "cabinet",
+      "room": "entry",
+      "position": [
+        8.1,
+        1.64
+      ],
+      "size": [
+        1.48,
+        0.42,
+        2.45
+      ],
+      "rotation": 1.570796,
+      "finish": "white",
+      "variant": "shoe"
+    },
+    {
+      "kind": "door",
+      "room": "entry",
+      "position": [
+        8.52,
+        0.86
+      ],
+      "size": [
+        1.03,
+        0.055,
+        2.06
+      ]
+    },
+    {
+      "kind": "counter",
+      "room": "kitchen",
+      "position": [
+        7.49,
+        1.08
+      ],
+      "size": [
+        1.24,
+        0.48,
+        0.88
+      ],
+      "rotation": -1.570796,
+      "finish": "white"
+    },
+    {
+      "kind": "hood",
+      "room": "kitchen",
+      "position": [
+        6.67,
+        0.28
+      ],
+      "size": [
+        1.18,
+        0.4,
+        0.77
+      ],
+      "finish": "white",
+      "elevation": 1.84
+    },
+    {
+      "kind": "flushLight",
+      "room": "kitchen",
+      "position": [
+        6.52,
+        1.09
+      ],
+      "size": [
+        0.42,
+        0.42,
+        0.045
+      ],
+      "variant": "square",
+      "elevation": 2.62
+    },
+    {
+      "kind": "mirror",
+      "room": "dry",
+      "position": [
+        5.59,
+        3.84
+      ],
+      "size": [
+        0.93,
+        0.12,
+        0.88
+      ],
+      "rotation": -1.570796,
+      "elevation": 1.11
+    },
+    {
+      "kind": "pendant",
+      "room": "dry",
+      "position": [
+        4.85,
+        3.87
+      ],
+      "size": [
+        0.22,
+        0.22,
+        0.27
+      ],
+      "variant": "amber",
+      "elevation": 2.45
+    },
+    {
+      "kind": "shower",
+      "room": "bath",
+      "position": [
+        4.49,
+        1.87
+      ],
+      "size": [
+        0.85,
+        0.68,
+        2.25
+      ]
+    },
+    {
+      "kind": "flushLight",
+      "room": "bath",
+      "position": [
+        4.6,
+        2.42
+      ],
+      "size": [
+        0.38,
+        0.38,
+        0.045
+      ],
+      "variant": "square",
+      "elevation": 2.5
+    },
+    {
+      "kind": "flushLight",
+      "room": "corridor",
+      "position": [
+        5.62,
+        4.92
+      ],
+      "size": [
+        0.1,
+        0.1,
+        0.06
+      ],
+      "elevation": 2.54
+    },
+    {
+      "kind": "flushLight",
+      "room": "corridor",
+      "position": [
+        4.55,
+        4.92
+      ],
+      "size": [
+        0.1,
+        0.1,
+        0.06
+      ],
+      "elevation": 2.54
+    },
+    {
+      "kind": "flushLight",
+      "room": "corridor",
+      "position": [
+        3.45,
+        4.92
+      ],
+      "size": [
+        0.1,
+        0.1,
+        0.06
+      ],
+      "elevation": 2.54
+    },
+    {
+      "kind": "flushLight",
+      "room": "entry",
+      "position": [
+        8.56,
+        1.67
+      ],
+      "size": [
+        0.1,
+        0.1,
+        0.06
+      ],
+      "elevation": 2.61
+    },
+    {
+      "kind": "flushLight",
+      "room": "master",
+      "position": [
+        0.9,
+        5.1
+      ],
+      "size": [
+        0.1,
+        0.1,
+        0.06
+      ],
+      "elevation": 2.51
+    },
+    {
+      "kind": "flushLight",
+      "room": "master",
+      "position": [
+        1.87,
+        5.1
+      ],
+      "size": [
+        0.1,
+        0.1,
+        0.06
+      ],
+      "elevation": 2.51
+    }
+  ],
+  "objects": []
+}

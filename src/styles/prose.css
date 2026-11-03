@@ -1,0 +1,444 @@
+/* ==========================================================================
+   正文排版（.prose）
+   --------------------------------------------------------------------------
+   这是站点最重要的样式：项目内容以中文长文 + 大量表格 + 图片为主，
+   所以字号、行高、段距、表格边框都按「长时间阅读」调过。
+   ========================================================================== */
+
+.prose {
+  font-size: var(--fs-body);
+  line-height: 1.9;
+  color: var(--ink);
+  letter-spacing: 0.006em;
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+.prose > * + * {
+  margin-top: 1.15em;
+}
+
+/* —— 标题：与界面同一字体，靠字重和段落节奏区分层级 —— */
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  position: relative;
+}
+
+/* 正文里的 h1 正常情况下已被构建期移除或降级为 h2，这里只做兜底 */
+.prose h1 {
+  margin-top: var(--space-9);
+  margin-bottom: var(--space-5);
+  padding-bottom: 0.42em;
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  border-bottom: 1px solid var(--line);
+}
+
+.prose h2 {
+  margin-top: var(--space-9);
+  margin-bottom: var(--space-5);
+  padding-bottom: 0.42em;
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  /* 只留一条分隔细线；标题层级靠字号与留白，不靠装饰线 */
+  border-bottom: 1px solid var(--line);
+}
+
+.prose h3 {
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-3);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+}
+
+.prose h4 {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+  font-size: 1.04em;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.prose h5,
+.prose h6 {
+  margin-top: 1.6em;
+  font-size: 0.96em;
+  color: var(--ink-2);
+}
+
+/* —— 段落与强调 —— */
+.prose strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.prose em {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.prose del {
+  color: var(--ink-3);
+}
+
+/* —— 链接：主题强调色与细下划线 —— */
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition:
+    text-decoration-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--accent);
+  background-color: var(--accent-soft);
+}
+
+.prose a[target='_blank']::after {
+  content: '↗';
+  font-size: 0.8em;
+  margin-left: 4px;
+  color: var(--ink-3);
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* 指向未收录文件的链接：保留文字，样式上弱化 */
+.prose .unarchived-link {
+  color: var(--ink-3);
+  border-bottom: 1px dotted var(--line-strong);
+  cursor: help;
+}
+
+/* —— 列表 —— */
+.prose ul,
+.prose ol {
+  padding-left: 1.35em;
+  margin-block: 1em;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+/* reset 会移除列表标记，恢复原文的步骤编号和普通项目符号。 */
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose ul > li::marker {
+  color: var(--accent);
+}
+
+.prose ol > li::marker {
+  color: var(--ink-3);
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-block: 0.4em;
+}
+
+/* 复选框清单：只读展示，保持「清单」的仪式感 */
+.prose .task-list-item {
+  list-style: none;
+  position: relative;
+  padding-left: 0;
+  margin-left: -1.35em;
+}
+
+.prose ul:has(> .task-list-item) {
+  padding-left: 1.35em;
+}
+
+.prose .task-list-item input[type='checkbox'] {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin: 0 8px 0 0;
+  vertical-align: -1px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--surface);
+  position: relative;
+}
+
+.prose .task-list-item input[type='checkbox']:checked {
+  background: var(--ok-soft);
+  border-color: var(--ok);
+}
+
+.prose .task-list-item input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--ok);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+
+.prose .task-list-item:has(input:checked) {
+  color: var(--ink-3);
+  text-decoration: line-through;
+  text-decoration-color: var(--line-strong);
+}
+
+/* —— 引用：左侧细线 + 淡底，用于结论/提示 —— */
+.prose blockquote {
+  margin: 1.5em 0;
+  padding: 0.85em 1.1em;
+  border-left: 1px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink-2);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.prose blockquote > * + * {
+  margin-top: 0.7em;
+}
+
+.prose blockquote strong {
+  color: var(--ink);
+}
+
+/* —— 表格：项目文档的重头戏 —— */
+.table-scroll {
+  margin: 1.6em 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose table {
+  overflow-wrap: break-word;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-table);
+  line-height: 1.65;
+}
+
+.prose thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.prose th,
+.prose td {
+  padding: 10px 12px;
+  border-right: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.prose th:last-child,
+.prose td:last-child {
+  border-right: none;
+}
+
+.prose tbody tr + tr td {
+  border-top: 1px solid var(--line);
+}
+
+.prose tbody tr:hover td {
+  background: var(--accent-soft);
+}
+
+/* 数字列对齐更整齐（尺寸、价格表） */
+.prose td:first-child {
+  color: var(--ink-2);
+}
+
+/* —— 图片 —— */
+.doc-figure {
+  margin: 1.9em 0;
+}
+
+.doc-figure img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  cursor: zoom-in;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.doc-figure img:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.doc-figure figcaption {
+  margin-top: 0.6em;
+  padding-left: 0.9em;
+  border-left: 2px solid var(--line-strong);
+  color: var(--ink-3);
+  font-size: var(--fs-meta);
+  line-height: 1.6;
+}
+
+/* —— 代码 —— */
+.prose :not(pre) > code {
+  padding: 0.15em 0.4em;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: var(--ink);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.prose pre {
+  margin: 1.6em 0;
+  padding: 16px;
+  overflow-x: auto;
+  background: var(--surface-2) !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.prose pre code {
+  font-family: var(--font-mono);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* shiki 双主题：跟随站点主题切换 */
+.prose .shiki,
+.prose .shiki span {
+  color: var(--shiki-light);
+  background-color: transparent !important;
+}
+
+[data-theme='dark'] .prose .shiki,
+[data-theme='dark'] .prose .shiki span {
+  color: var(--shiki-dark);
+}
+
+/* —— mermaid —— */
+.mermaid-figure {
+  margin: 1.8em 0;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow-x: auto;
+  text-align: center;
+}
+
+.mermaid-figure svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.mermaid-canvas {
+  color: var(--ink-3);
+  font-size: var(--fs-meta);
+  font-family: var(--font-mono);
+}
+
+.mermaid-error {
+  color: var(--risk);
+  font-size: var(--fs-meta);
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+/* —— 分隔线 —— */
+.prose hr {
+  margin: 2.4em 0;
+}
+
+/* —— 关键词提示（可选阅读模式） ——
+   这是词面高亮，不是可信度分类。为了不单靠颜色区分，每类还给了不同的
+   下划线样式与一个前置形状标记；`.kw-fact` 与 `.kw-tested` 尤其不能长得一样。 */
+.prose mark.kw,
+.entry mark.kw {
+  background: none;
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 2px;
+  border-bottom: 2px solid currentColor;
+}
+
+.prose mark.kw-fact,
+.entry mark.kw-fact {
+  color: var(--ok);
+  border-bottom-color: var(--ok);
+  border-bottom-style: solid;
+  background: var(--ok-soft);
+}
+
+/* 已实测：实线 + 双下划线，和「已确认」区分开 */
+.prose mark.kw-tested,
+.entry mark.kw-tested {
+  color: var(--teal);
+  border-bottom-color: var(--teal);
+  border-bottom-style: double;
+  border-bottom-width: 3px;
+  background: var(--teal-soft);
+}
+
+.prose mark.kw-observed,
+.entry mark.kw-observed {
+  color: var(--info);
+  border-bottom-color: var(--info);
+  border-bottom-style: dotted;
+  background: var(--info-soft);
+}
+
+.prose mark.kw-advice,
+.entry mark.kw-advice {
+  color: var(--warn);
+  border-bottom-color: var(--warn);
+  border-bottom-style: dashed;
+  background: var(--warn-soft);
+}
+
+.prose mark.kw-pending,
+.entry mark.kw-pending {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  border-bottom-style: dashed;
+  background: var(--accent-soft);
+}
+
+.prose mark.kw-open,
+.entry mark.kw-open {
+  color: var(--ink-2);
+  border-bottom-color: var(--ink-3);
+  border-bottom-style: dotted;
+  background: var(--neutral-soft);
+}
