@@ -1,0 +1,7 @@
+allowBuilds:
+  sharp: false
+
+# Next 15.5 pins an older PostCSS; keep its build dependency on the audited patch.
+overrides:
+  'next>postcss': 8.5.31
+  sharp: 0.35.5

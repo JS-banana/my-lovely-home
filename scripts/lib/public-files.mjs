@@ -4,6 +4,7 @@ export const sharedFiles = [
   'tsconfig.json',
   '.prettierrc.json',
   'pnpm-lock.yaml',
+  'pnpm-workspace.yaml',
   'src/app/globals.css',
   'src/components/HomeArtwork.tsx',
   'src/components/ThemeToggle.tsx',
