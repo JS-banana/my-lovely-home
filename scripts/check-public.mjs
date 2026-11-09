@@ -2,12 +2,15 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import assert from 'node:assert/strict'
 import { validatePublicModel } from './lib/public-model.mjs'
-import { publicFiles } from './lib/public-files.mjs'
+import { publicArticles, publicFiles } from './lib/public-files.mjs'
 
 const root = process.cwd()
 await assert.rejects(fs.access(path.join(root, 'EXPORT_FAILED')))
 validatePublicModel(JSON.parse(await fs.readFile('content/home.json', 'utf8')))
-assert.deepEqual((await fs.readdir('content')).sort(), ['design.md', 'home.json'])
+assert.deepEqual(
+  (await fs.readdir('content')).sort(),
+  ['home.json', ...publicArticles.map(({ slug }) => `${slug}.md`)].sort(),
+)
 assert.deepEqual((await fs.readdir('public')).sort(), ['artwork'])
 assert.deepEqual((await fs.readdir('public/artwork')).sort(), [
   'home-miniature-2026-10-19.webp',
@@ -57,8 +60,9 @@ if (process.argv.includes('--built')) {
     '404/index.html',
     'about/index.html',
     'about/index.txt',
-    'design/index.html',
-    'design/index.txt',
+    ...publicArticles.flatMap(({ href }) =>
+      ['html', 'txt'].map((ext) => `${href.slice(1)}index.${ext}`),
+    ),
     'home-3d/index.html',
     'home-3d/index.txt',
     'robots.txt',
@@ -80,16 +84,7 @@ if (process.argv.includes('--built')) {
     }
   }
   await checkOutput('out')
-  for (const route of [
-    'index.html',
-    'home-3d/index.html',
-    'design/index.html',
-    'about/index.html',
-    '404.html',
-    'robots.txt',
-    'sitemap.xml',
-  ])
-    await fs.access(`out/${route}`)
+  for (const file of expected) await fs.access(`out/${file}`)
   await scan('out')
 }
 console.log('Public boundary checked: geometry, prose, assets, routes and text payloads')

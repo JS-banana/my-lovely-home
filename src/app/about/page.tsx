@@ -4,8 +4,8 @@ export default function About() {
     <article className="prose share-reading">
       <h1>关于这个小家</h1>
       <p>
-        My Lovely Home 是一个用浏览器参观家的小项目。空间用 Three.js
-        实时绘制，页面可以静态部署。我们希望借此交流布局和设计，也把实现方式分享给有兴趣的朋友。
+        My Lovely Home 用 Three.js
+        实时绘制一个可以走进去的家。我们也在这里记录布置空间、规划灯光和搭建家庭网络时的取舍，以及能分享的使用经验。
       </p>
       <h2>你可以怎样使用</h2>
       <p>项目源代码采用 MIT 许可证，可以参考、修改和复用，具体条款见 GitHub 仓库的 LICENSE。</p>

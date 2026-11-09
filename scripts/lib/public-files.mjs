@@ -1,3 +1,26 @@
+export const publicArticle = {
+  design: {
+    slug: 'design',
+    href: '/design/',
+    title: '空间设计',
+    summary: '从日常动线、家具摆位和材质搭配看空间。',
+  },
+  smartHome: {
+    slug: 'smart-home',
+    href: '/design/smart-home/',
+    title: '家庭智能化',
+    summary: '从回家、经过和睡前三个时刻，规划实体按键、语音与联动。',
+  },
+  network: {
+    slug: 'network',
+    href: '/design/network/',
+    title: '家庭网络',
+    summary: '用现有网线和设备做有线 Mesh，再按办公、影音和存储需求扩展。',
+  },
+}
+
+export const publicArticles = Object.values(publicArticle)
+
 export const sharedFiles = [
   'next.config.mjs',
   'postcss.config.cjs',
@@ -7,6 +30,7 @@ export const sharedFiles = [
   'pnpm-workspace.yaml',
   'src/app/globals.css',
   'src/components/HomeArtwork.tsx',
+  'src/components/SmartSceneVisual.tsx',
   'src/components/ThemeToggle.tsx',
   'src/components/Icon.tsx',
   'src/components/HomeModelScene.tsx',
@@ -38,10 +62,15 @@ export const templateFiles = [
   '.github/workflows/verify.yml',
   '.github/workflows/deploy.yml',
   'scripts/check-public.mjs',
+  'scripts/smoke-public.mjs',
   'src/app/layout.tsx',
   'src/app/page.tsx',
   'src/app/about/page.tsx',
   'src/app/design/page.tsx',
+  'src/app/design/Article.tsx',
+  'src/app/design/TopicVisual.tsx',
+  'src/app/design/smart-home/page.tsx',
+  'src/app/design/network/page.tsx',
   'src/app/home-3d/page.tsx',
   'src/app/not-found.tsx',
   'src/app/robots.ts',
@@ -53,5 +82,5 @@ export const publicFiles = [
   ...templateFiles,
   'package.json',
   'content/home.json',
-  'content/design.md',
+  ...publicArticles.map(({ slug }) => `content/${slug}.md`),
 ]
