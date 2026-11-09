@@ -7,7 +7,7 @@ import './showcase.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://home.laifuyou.com'),
   title: { default: 'My Lovely Home · 把家搬进浏览器', template: '%s · My Lovely Home' },
-  description: '一个可以旋转、走进的三维小家。分享空间布局、设计思路和浏览器中的 3D 实现。',
+  description: '逛逛可以走进的三维小家，阅读空间设计、家庭智能化和家庭网络的规划与实践。',
   openGraph: {
     title: 'My Lovely Home',
     description: '把日子，慢慢住成家。',
@@ -31,8 +31,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             My Lovely Home<span>好好生活，慢慢记录。</span>
           </Link>
           <nav aria-label="主导航">
-            <Link href="/home-3d/">逛逛这个家</Link>
-            <Link href="/design/">设计思路</Link>
+            <Link href="/home-3d/">3D 参观</Link>
+            <Link href="/#planning">设计与规划</Link>
             <ThemeToggle />
           </nav>
         </header>

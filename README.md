@@ -1,6 +1,6 @@
 # My Lovely Home
 
-把自己的家搬到浏览器中：使用 Three.js 绘制房间、墙体、家具与材质，支持全屋浏览和室内参观。在线体验：[home.laifuyou.com](https://home.laifuyou.com)。
+把自己的家搬到浏览器中。使用 Three.js 绘制房间、墙体、家具与材质，支持全屋浏览和室内参观。网站也分享空间设计、家庭智能化和家庭网络的规划思路与实践。在线体验见 [home.laifuyou.com](https://home.laifuyou.com)。
 
 ## 本地运行
 
@@ -19,8 +19,9 @@ pnpm verify
 - `src/components/HomeModelScene.tsx`：共享 Three.js 绘制、家具几何、镜头与交互。
 - `src/components/PublicHomeModel.tsx`：参观操作。
 - `content/home.json`：经过字段白名单筛选的几何数据；修改后须通过严格校验。
-- `content/design.md`：精选设计思路。
+- `content/design.md`、`content/smart-home.md`、`content/network.md`：三篇精选公开稿。
 - `scripts/check-public.mjs`：检查数据字段、资源及静态产物。
+- `scripts/smoke-public.mjs`：发布后以真实 HTTP 检查页面、资源、404 与缓存；Deploy 工作流会核对响应与本次构建产物一致。
 
 本仓库由私有主仓单向生成，有独立历史，不含私人材料或私有仓 Git 历史。上游维护者先在主仓修改，再重新导出、验证和发布。欢迎通过 issue 交流；外部代码贡献会先在主仓整合，再同步到此处。普通使用者可以直接 fork 本仓库独立修改。
 

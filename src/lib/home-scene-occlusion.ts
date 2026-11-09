@@ -18,6 +18,43 @@ import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js'
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js'
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
 
+/** This patch depends on OutputPass internals; Three upgrades must keep all three anchors. */
+export function patchMiniatureOutputShader(shader: string) {
+  const patches = [
+    [
+      'uniform sampler2D tDiffuse;',
+      'uniform sampler2D tDiffuse;\nuniform vec3 miniatureBackground;',
+    ],
+    [
+      'gl_FragColor = texture2D( tDiffuse, vUv );',
+      `
+        gl_FragColor = texture2D( tDiffuse, vUv );
+        gl_FragColor.rgb /= max(gl_FragColor.a, 0.00001);
+      `,
+    ],
+    [
+      '// color space',
+      `
+        gl_FragColor.rgb = mix(miniatureBackground, gl_FragColor.rgb, gl_FragColor.a);
+        gl_FragColor.a = 1.0;
+        // color space
+      `,
+    ],
+  ] as const
+  let previous = -1
+  let patched = shader
+  for (const [anchor, replacement] of patches) {
+    const index = shader.indexOf(anchor)
+    if (index < 0 || shader.indexOf(anchor, index + anchor.length) >= 0)
+      throw new Error(`Three.js OutputPass shader contract changed: expected one ${anchor}`)
+    if (index <= previous)
+      throw new Error('Three.js OutputPass shader contract changed: unexpected anchor order')
+    previous = index
+    patched = patched.replace(anchor, replacement)
+  }
+  return patched
+}
+
 /** Miniature-view contact shading. The depth pass must respect the same display cuts as color. */
 export function createHomeOcclusion(
   renderer: WebGLRenderer,
@@ -76,26 +113,7 @@ export function createHomeOcclusion(
     // Composite the paper background after tone mapping. The color pass alpha
     // carries MSAA coverage, so silhouettes never depend on the lower-res AO depth.
     output.uniforms.miniatureBackground = { value: new Color() }
-    output.material.fragmentShader = output.material.fragmentShader
-      .replace(
-        'uniform sampler2D tDiffuse;',
-        'uniform sampler2D tDiffuse;\nuniform vec3 miniatureBackground;',
-      )
-      .replace(
-        'gl_FragColor = texture2D( tDiffuse, vUv );',
-        `
-        gl_FragColor = texture2D( tDiffuse, vUv );
-        gl_FragColor.rgb /= max(gl_FragColor.a, 0.00001);
-      `,
-      )
-      .replace(
-        '// color space',
-        `
-        gl_FragColor.rgb = mix(miniatureBackground, gl_FragColor.rgb, gl_FragColor.a);
-        gl_FragColor.a = 1.0;
-        // color space
-      `,
-      )
+    output.material.fragmentShader = patchMiniatureOutputShader(output.material.fragmentShader)
     composer.addPass(colorPass)
     composer.addPass(occlusion)
     composer.addPass(output)

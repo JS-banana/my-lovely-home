@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic'
 import {
   useCallback,
+  useEffect,
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
   type PointerEvent as ReactPointerEvent,
@@ -24,6 +25,7 @@ const EMPTY_OBJECTS: HomeSceneData['objects'] = []
 export default function PublicHomeModel({ model }: { model: HomeSceneData }) {
   const firstRoom = model.rooms[0]?.id ?? ''
   const [selectedRoom, setSelectedRoom] = useState(firstRoom)
+  const [walkRoom, setWalkRoom] = useState(firstRoom)
   const [view, setView] = useState<ModelView>({ kind: 'overview', serial: 0 })
   const [motion, setMotion] = useState<WalkMotion>(null)
   const [furniture, setFurniture] = useState(true)
@@ -32,13 +34,25 @@ export default function PublicHomeModel({ model }: { model: HomeSceneData }) {
   const [status, setStatus] = useState<SceneStatus>('loading')
   const [sceneAttempt, setSceneAttempt] = useState(0)
 
-  const room = model.rooms.find((item) => item.id === selectedRoom)
   const walking = view.kind === 'walk'
+  // A pending destination must not rename the room currently shown by the camera.
+  const room = model.rooms.find((item) => item.id === (walking ? walkRoom : view.room))
   const wallCut = Math.min(model.referenceHeight, 1.2)
+
+  useEffect(() => {
+    const stop = () => setMotion(null)
+    window.addEventListener('blur', stop)
+    document.addEventListener('visibilitychange', stop)
+    return () => {
+      window.removeEventListener('blur', stop)
+      document.removeEventListener('visibilitychange', stop)
+    }
+  }, [])
 
   const requestView = useCallback((kind: ModelView['kind'], roomId?: string) => {
     setBlocked(false)
     setMotion(null)
+    if (kind === 'walk') setWalkRoom(roomId ?? '')
     setView((current) => ({
       kind,
       serial: current.serial + 1,
@@ -65,13 +79,24 @@ export default function PublicHomeModel({ model }: { model: HomeSceneData }) {
 
   const handleRoomChange = useCallback(
     (roomId: string) => {
-      if (model.rooms.some((item) => item.id === roomId)) setSelectedRoom(roomId)
+      if (model.rooms.some((item) => item.id === roomId)) {
+        setWalkRoom(roomId)
+        setSelectedRoom(roomId)
+      }
     },
     [model.rooms],
   )
 
+  const handleSceneStatus = useCallback((next: SceneStatus) => {
+    setStatus(next)
+    if (next !== 'ready') {
+      setMotion(null)
+      setBlocked(false)
+    }
+  }, [])
+
   const startMotion = (next: WalkMotion, event: ReactPointerEvent<HTMLButtonElement>) => {
-    if (!walking) return
+    if (!walking || status !== 'ready') return
     event.preventDefault()
     event.currentTarget.setPointerCapture(event.pointerId)
     setBlocked(false)
@@ -85,7 +110,7 @@ export default function PublicHomeModel({ model }: { model: HomeSceneData }) {
   }
 
   const startKeyboardMotion = (next: WalkMotion, event: ReactKeyboardEvent<HTMLButtonElement>) => {
-    if (!walking || (event.key !== ' ' && event.key !== 'Enter')) return
+    if (!walking || status !== 'ready' || (event.key !== ' ' && event.key !== 'Enter')) return
     event.preventDefault()
     setBlocked(false)
     setMotion(next)
@@ -99,13 +124,15 @@ export default function PublicHomeModel({ model }: { model: HomeSceneData }) {
   }
 
   const retry = () => {
-    setStatus('loading')
+    handleSceneStatus('loading')
+    // The replacement scene starts from the requested view, not the old camera's last room.
+    if (walking) setWalkRoom(view.room ?? '')
     setSceneAttempt((attempt) => attempt + 1)
   }
 
   return (
-    <section className={`${sceneStyles.viewer} ${styles.publicRoot}`} aria-label="公开三维户型参观">
-      <div className={`${sceneStyles.viewport} ${styles.publicViewport}`}>
+    <section className={styles.publicRoot} aria-label="公开三维户型参观">
+      <div className={`${sceneStyles.viewer} ${sceneStyles.viewport} ${styles.publicViewport}`}>
         <div
           className={styles.stage}
           aria-label="三维房屋参观区"
@@ -131,112 +158,8 @@ export default function PublicHomeModel({ model }: { model: HomeSceneData }) {
             onStructureBase={() => {}}
             onSelect={handleSceneSelect}
             onRoomChange={handleRoomChange}
-            onStatus={setStatus}
+            onStatus={handleSceneStatus}
           />
-        </div>
-
-        <div className={styles.controls}>
-          <div className={styles.controlPanel} aria-label="参观控制">
-            <div className={styles.panelHeader}>
-              <h2>探索空间</h2>
-              <span className={styles.panelState} aria-live="polite">
-                {walking
-                  ? `正在参观${room?.name ?? '房间'}`
-                  : view.kind === 'focus'
-                    ? room?.name
-                    : '全屋'}
-              </span>
-            </div>
-
-            <div className={styles.viewModes} role="group" aria-label="查看模式">
-              <Button
-                variant={view.kind === 'overview' ? 'primary' : 'secondary'}
-                aria-pressed={view.kind === 'overview'}
-                onClick={() => requestView('overview')}
-              >
-                <Icon name="home" size={16} />
-                总览
-              </Button>
-              <Button
-                variant={view.kind === 'top' ? 'primary' : 'secondary'}
-                aria-pressed={view.kind === 'top'}
-                onClick={() => requestView('top')}
-              >
-                <Icon name="layers" size={16} />
-                俯视
-              </Button>
-              {view.kind !== 'overview' && (
-                <Button variant="outline" onClick={() => requestView('overview')}>
-                  返回总览
-                </Button>
-              )}
-            </div>
-
-            <div className={styles.roomControls}>
-              <label className={styles.roomPicker}>
-                <span>选择房间</span>
-                <select
-                  value={selectedRoom}
-                  aria-label="选择房间"
-                  disabled={!model.rooms.length}
-                  onChange={(event) => chooseRoom(event.target.value)}
-                >
-                  {model.rooms.length ? (
-                    model.rooms.map((item) => (
-                      <option value={item.id} key={item.id}>
-                        {item.name}
-                      </option>
-                    ))
-                  ) : (
-                    <option value="">暂无房间</option>
-                  )}
-                </select>
-              </label>
-              <div className={styles.roomActions}>
-                <Button
-                  variant={view.kind === 'focus' ? 'primary' : 'secondary'}
-                  disabled={!selectedRoom}
-                  aria-pressed={view.kind === 'focus'}
-                  onClick={() => requestView('focus', selectedRoom)}
-                >
-                  查看房间
-                </Button>
-                <Button
-                  variant={walking ? 'primary' : 'secondary'}
-                  disabled={!selectedRoom}
-                  aria-pressed={walking}
-                  onClick={() => requestView('walk', selectedRoom)}
-                >
-                  进入房间漫游
-                </Button>
-              </div>
-            </div>
-
-            <div className={styles.displayOptions} aria-label="显示设置">
-              <label className={styles.checkOption}>
-                <input
-                  type="checkbox"
-                  checked={furniture}
-                  onChange={(event) => setFurniture(event.target.checked)}
-                />
-                <span>家具</span>
-              </label>
-              <label className={styles.checkOption}>
-                <input
-                  type="checkbox"
-                  checked={roomLabels}
-                  onChange={(event) => setRoomLabels(event.target.checked)}
-                />
-                <span>房间标签</span>
-              </label>
-            </div>
-          </div>
-
-          <p className={styles.help} id="public-scene-help">
-            {walking
-              ? '拖动画面转头，点击地面移动；也可使用 W/A/S/D、方向键或屏幕方向按钮。'
-              : '拖动画面旋转，滚轮缩放；选择房间后可进入室内漫游。'}
-          </p>
         </div>
 
         {walking && (
@@ -332,6 +255,109 @@ export default function PublicHomeModel({ model }: { model: HomeSceneData }) {
             </Button>
           </div>
         )}
+      </div>
+      <div className={styles.controls}>
+        <div className={styles.controlPanel} aria-label="参观控制">
+          <div className={styles.panelHeader}>
+            <h2>探索空间</h2>
+            <span className={styles.panelState} aria-live="polite">
+              {walking
+                ? `正在参观${room?.name ?? '房间'}`
+                : view.kind === 'focus'
+                  ? room?.name
+                  : '全屋'}
+            </span>
+          </div>
+
+          <div className={styles.viewModes} role="group" aria-label="查看模式">
+            <Button
+              variant={view.kind === 'overview' ? 'primary' : 'secondary'}
+              aria-pressed={view.kind === 'overview'}
+              onClick={() => requestView('overview')}
+            >
+              <Icon name="home" size={16} />
+              总览
+            </Button>
+            <Button
+              variant={view.kind === 'top' ? 'primary' : 'secondary'}
+              aria-pressed={view.kind === 'top'}
+              onClick={() => requestView('top')}
+            >
+              <Icon name="layers" size={16} />
+              俯视
+            </Button>
+            {view.kind !== 'overview' && (
+              <Button variant="outline" onClick={() => requestView('overview')}>
+                返回总览
+              </Button>
+            )}
+          </div>
+
+          <div className={styles.roomControls}>
+            <label className={styles.roomPicker}>
+              <span>选择房间</span>
+              <select
+                value={selectedRoom}
+                aria-label="选择房间"
+                disabled={!model.rooms.length}
+                onChange={(event) => chooseRoom(event.target.value)}
+              >
+                {model.rooms.length ? (
+                  model.rooms.map((item) => (
+                    <option value={item.id} key={item.id}>
+                      {item.name}
+                    </option>
+                  ))
+                ) : (
+                  <option value="">暂无房间</option>
+                )}
+              </select>
+            </label>
+            <div className={styles.roomActions}>
+              <Button
+                variant={view.kind === 'focus' ? 'primary' : 'secondary'}
+                disabled={!selectedRoom}
+                aria-pressed={view.kind === 'focus'}
+                onClick={() => requestView('focus', selectedRoom)}
+              >
+                查看房间
+              </Button>
+              <Button
+                variant={walking ? 'primary' : 'secondary'}
+                disabled={!selectedRoom}
+                aria-pressed={walking}
+                onClick={() => requestView('walk', selectedRoom)}
+              >
+                进入房间漫游
+              </Button>
+            </div>
+          </div>
+
+          <div className={styles.displayOptions} aria-label="显示设置">
+            <label className={styles.checkOption}>
+              <input
+                type="checkbox"
+                checked={furniture}
+                onChange={(event) => setFurniture(event.target.checked)}
+              />
+              <span>家具</span>
+            </label>
+            <label className={styles.checkOption}>
+              <input
+                type="checkbox"
+                checked={roomLabels}
+                onChange={(event) => setRoomLabels(event.target.checked)}
+              />
+              <span>房间标签</span>
+            </label>
+          </div>
+        </div>
+
+        <p className={styles.help} id="public-scene-help">
+          {walking
+            ? '拖动画面转头，点击地面移动；也可使用 W/A/S/D、方向键或屏幕方向按钮。'
+            : '拖动画面旋转，滚轮缩放；选择房间后可进入室内漫游。'}
+        </p>
       </div>
     </section>
   )
